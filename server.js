@@ -7,14 +7,16 @@ const app = express();
 
 app
   .use(bodyParser.json())
-  .use('/', require('./routes'))
   .use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', `http://localhost:${port}`);
-    res.setHeader('Access-Control-Allow-Origin', 'https://cse341-contacts-frontend.netlify.app');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept, Z-Key'
+    );
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     next();
-  });
+  })
+  .use('/', require('./routes'));
 
 mongodb.initDb((err) => {
   if (err) {
