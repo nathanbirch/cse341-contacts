@@ -6,9 +6,6 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 // test comment
-// test comment
-// test comment
-// test comment
 
 app
   .use(bodyParser.json())
